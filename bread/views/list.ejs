@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="/css/list.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="header">
+        <table class="head">
+            <tr>
+                <th>No.</th>
+                <th>Nama</th>
+                <th>Height</th>
+                <th>Weight</th>
+                <th>Birth Date</th>
+                <th>Is Married</th>
+                <th>actions</th>
+            </tr>
+            <% rows.forEach((item,index)=>{%>
+                <%if(item.married===1){%>
+                    <tr class="body">
+                        <td>
+                            <%= index + 1 %>
+                        </td>
+                        <td>
+                            <%= item.name %>
+                        </td>
+                        <td>
+                            <%= item.height %>
+                        </td>
+                        <td>
+                            <%= item.weight %>
+                        </td>
+                        <td>
+                            <%= item.birthdate %>
+                        </td>
+                        <td>
+                            <%= "Yes" %>
+                        </td>
+                        <td>
+                            <a href="/update/<%=index%>" class="update">
+                                Update
+                            </a>
+                            <a href='/delete/<%=index%>' onclick="return notifikasi('<%=item.name%>')" class="delete">
+                                Delete
+                            </a>
+                        </td>
+                    </tr>
+                    <%}%>
+                        <%if(item.married===0){%>
+                            <tr class="body">
+                                <td>
+                                    <%= index + 1 %>
+                                </td>
+                                <td>
+                                    <%= item.name %>
+                                </td>
+                                <td>
+                                    <%= item.height %>
+                                </td>
+                                <td>
+                                    <%= item.weight %>
+                                </td>
+                                <td>
+                                    <%= item.birthdate %>
+                                </td>
+                                <td>
+                                    <%= "Not Yet" %>
+                                </td>
+                                <td>
+                                    <a href="/update/<%=index%>" class="update">
+                                        Update
+                                    </a>
+                                    <a href='/delete/<%=index%>' onclick="return notifikasi('<%=item.name%>')"
+                                        class="delete">
+                                        Delete
+                                    </a>
+                                </td>
+                            </tr>
+                            <%}%>
+                                <% }) %>
+        </table>
+        <script>
+            function notifikasi(item) {
+                const jawab = confirm(`apakah kamu yakin akan menghapus data '${item}'?`)
+                if (jawab) {
+                    return true
+                } else {
+                    return false
+                }
+            }
+        </script>
+    </div>
+    <div class="btn-add">
+        <a href="/add" class="add">Add</a>
+    </div>
+
+</body>
+
+</html>

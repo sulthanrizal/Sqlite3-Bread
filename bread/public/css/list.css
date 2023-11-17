@@ -1,0 +1,103 @@
+* {
+    box-sizing: border-box;
+}
+
+
+table {
+    width: 100%;
+    border: 1px solid #dddd;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.judul {
+    width: 100%;
+}
+
+th,
+td {
+    text-align: left;
+    padding: 10px;
+}
+
+
+
+
+.body:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+
+
+.add {
+    width: 100%;
+    background-color: blue;
+    border-radius: 5px;
+    text-align: center;
+}
+
+a.create {
+    width: 100%;
+    text-decoration: none;
+    background-color: blue;
+    color: white;
+    display: inline-block;
+    text-align: center;
+    padding: 10px;
+    border-radius: 3px;
+}
+
+.create:hover {
+    background-color: rgb(12, 161, 241);
+}
+
+.update {
+    background-color: green;
+    text-decoration: none;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 13px;
+    margin-right: 5px;
+}
+
+.delete {
+    background-color: red;
+    text-decoration: none;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 13px;
+}
+
+.header {
+    border: 1px solid #dddd;
+    margin-bottom: 0px;
+}
+
+.head {
+    margin-bottom: 15px;
+}
+
+
+.add {
+    background-color: #326bfd;
+    color: white;
+    padding: 8px 30px;
+    padding-top: 7.2px;
+    border: none;
+    cursor: pointer;
+    width: 10%;
+    text-decoration: none;
+    text-align: center;
+    border-radius: 7px;
+}
+
+.btn-add {
+    background-color: #f2f2f2;
+    padding: 20px;
+    padding-left: 10px;
+    border: 1px solid #ddd;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+    justify-content: flex-end;
+
+}

@@ -2,14 +2,54 @@
 <html lang="en">
 
 <head>
+    <link rel="stylesheet" href="/css/add.css">
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/add.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Adding Data</title>
 </head>
 
 <body>
-
+    <div class="heading">
+        <h1>Adding Data</h1>
+        <div class="countainer">
+            <form action="/add" method="post">
+                <div class="table">
+                    <p>Name
+                        <input type="text" name="name" placeholder="insert your name">
+                    </p>
+                    <p>
+                        Height
+                        <input type="number" name="height" placeholder="insert your height">
+                    </p>
+                    <p>
+                        Weight
+                        <input type="number" name="weight" step="0.0001" placeholder="insert your weight"
+                            style="margin-left:91px; width: 85%;">
+                    </p>
+                    <p>
+                        Birth Date
+                        <input type="date" name="birthdate">
+                    </p>
+                    <p name="married">
+                        Is Married
+                        <input type="radio" id="false" name="married" value="0">
+                        <label for="false">Not Yet</label>
+                    <div class="true">
+                        <input type="radio" id="true" name="married" value="1">
+                        <label for="true">Yes</label>
+                    </div>
+                    </p>
+                </div>
+                <div class="footer">
+                    <button type="submit" class="save">Save</button>
+                    <a href="/" class="cancel">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
 </body>
 
 </html>
