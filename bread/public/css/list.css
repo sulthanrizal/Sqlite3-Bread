@@ -5,7 +5,7 @@
 
 table {
     width: 100%;
-    border: 1px solid #dddd;
+    border-bottom: 1px solid #dddd;
     border-collapse: collapse;
     margin-top: 20px;
 }
@@ -26,6 +26,7 @@ td {
 .body:nth-child(even) {
     background-color: #f2f2f2;
 }
+
 
 
 
@@ -52,7 +53,7 @@ a.create {
 }
 
 .update {
-    background-color: green;
+    background-color: #198753;
     text-decoration: none;
     color: white;
     border-radius: 5px;
@@ -61,7 +62,7 @@ a.create {
 }
 
 .delete {
-    background-color: red;
+    background-color: #DC3444;
     text-decoration: none;
     color: white;
     border-radius: 5px;
@@ -69,8 +70,25 @@ a.create {
 }
 
 .header {
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 9px;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    margin-left: 150px;
+    margin-right: 150px;
+    margin-top: 15px;
     border: 1px solid #dddd;
     margin-bottom: 0px;
+    font-family: Arial;
+}
+
+.btn-header {
+    background-color: #f2f2f2;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    justify-content: center;
 }
 
 .head {
@@ -100,4 +118,82 @@ a.create {
     border-bottom-right-radius: 7px;
     justify-content: flex-end;
 
+}
+
+.footer {
+    width: 100%;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+.search {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    background-color: #1ECAF0;
+    text-decoration: none;
+    color: black;
+    border: 1px solid #1ECAF0;
+    border-radius: 5px;
+    padding: 5.5px 15px;
+    margin-left: 10px;
+
+}
+
+.garis {
+    width: 98.5%;
+}
+
+.cancel {
+    text-decoration: none;
+    color: black;
+    background-color: #FEC008;
+    padding: 5px 15px;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.table {
+    margin-left: 10px;
+}
+
+input[type=text] {
+    margin-left: 98px;
+    width: 86%;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 5px;
+    padding-left: 10px;
+}
+
+input[type=number] {
+    padding: 5px;
+    margin-left: 94px;
+    width: 86%;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 5px;
+    padding-left: 10px;
+}
+
+input[type=date] {
+    padding: 5px;
+    margin-left: 70px;
+    width: 86%;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    padding: 5px;
+    padding-left: 10px;
+
+}
+
+input[type=radio] {
+    margin-left: 70px;
+}
+
+.married {
+    margin-left: 70px;
+    width: 86%;
+    padding: 4px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
 }

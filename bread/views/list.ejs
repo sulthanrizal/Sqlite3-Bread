@@ -6,16 +6,63 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>BREAD(Browse,Read,Edit,Add,Delete) and Pagination</title>
 </head>
 
 <body>
 
     <div class="header">
+        <div class="btn-header">
+            <h1>SQlite Bread(Browse,Read,Edit,Add,Delete) and Pagination</h1>
+        </div>
+        <div>
+            <form action="/add" method="post">
+                <div class="table">
+                    <p>Name
+                        <input type="text" name="name" placeholder="insert your name">
+                    </p>
+                    <p>
+                        Height
+                        <input type="number" name="height" placeholder="insert your height">
+                    </p>
+                    <p>
+                        Weight
+                        <input type="number" name="weight" step="0.0001" placeholder="insert your weight"
+                            style="margin-left:91px; width: 86%;">
+                    </p>
+                    <p>
+                        Birth Date
+                        <input type="date" name="birthdate" style="width: 36%; margin-right: 60px;">
+                        s.d.
+                        <input type="date" name="birthdate" style="width: 36%; margin-left: 60px;">
+                    </p>
+                    <p name="married">
+                        Is Married
+                        <select name="married" class="married">
+                            <option disable selected>-select married-</option>
+                            <option value="0">Not Yet</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </p>
+                    <p>
+                        Operation
+                        <input value="" id="or" type="radio"></input>
+                        <label for="or">OR</label>
+                        <input value="" id="and" type="radio" style="margin-left: 20px;"></input>
+                        <label for="and">AND</label>
+                    </p>
+                </div>
+                <div class="footer">
+                    <button type="submit" class="search">Search</button>
+                    <a href="/" class="cancel">Back</a>
+                </div>
+            </form>
+        </div>
+        <hr style="border: 1px groove #f2f2f2" class="garis">
         <table class="head">
             <tr>
                 <th>No.</th>
-                <th>Nama</th>
+                <th>Name </th>
                 <th>Height</th>
                 <th>Weight</th>
                 <th>Birth Date</th>
@@ -26,7 +73,7 @@
                 <%if(item.married===1){%>
                     <tr class="body">
                         <td>
-                            <%= index + 1 %>
+                            <%= item.id %>
                         </td>
                         <td>
                             <%= item.name %>
@@ -44,10 +91,10 @@
                             <%= "Yes" %>
                         </td>
                         <td>
-                            <a href="/update/<%=index%>" class="update">
+                            <a href="/update/<%=item.id%>" class="update">
                                 Update
                             </a>
-                            <a href='/delete/<%=index%>' onclick="return notifikasi('<%=item.name%>')" class="delete">
+                            <a href='/delete/<%=item.id%>' onclick="return notifikasi('<%=item.name%>')" class="delete">
                                 Delete
                             </a>
                         </td>
@@ -56,7 +103,7 @@
                         <%if(item.married===0){%>
                             <tr class="body">
                                 <td>
-                                    <%= index + 1 %>
+                                    <%= item.id %>
                                 </td>
                                 <td>
                                     <%= item.name %>
@@ -74,10 +121,10 @@
                                     <%= "Not Yet" %>
                                 </td>
                                 <td>
-                                    <a href="/update/<%=index%>" class="update">
+                                    <a href="/update/<%=item.id%>" class="update">
                                         Update
                                     </a>
-                                    <a href='/delete/<%=index%>' onclick="return notifikasi('<%=item.name%>')"
+                                    <a href='/delete/<%=item.id%>' onclick="return notifikasi('<%=item.name%>')"
                                         class="delete">
                                         Delete
                                     </a>
@@ -96,11 +143,10 @@
                 }
             }
         </script>
+        <div class="btn-add">
+            <a href="/add" class="add">Add</a>
+        </div>
     </div>
-    <div class="btn-add">
-        <a href="/add" class="add">Add</a>
-    </div>
-
 </body>
 
 </html>

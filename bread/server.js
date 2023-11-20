@@ -25,18 +25,38 @@ app.get('/', (req, res) => {
 })
 
 app.get('/add', (req, res) => {
-
     res.render('add')
 })
 
 app.post('/add', (req, res) => {
     db.run('INSERT INTO data(name,height,weight,birthdate,married) VALUES (?,?,?,?,?) ', [req.body.name, req.body.height, req.body.weight, req.body.birthdate, req.body.married], (err) => {
-        console.log(req.body)
         if (err) return res.send(err)
         res.redirect('/')
     })
 })
 
+app.get('/update/:id', (req, res) => {
+    const id = req.params.id
+    db.get(`SELECT * FROM data WHERE id = ? `, [id], (err, data) => {
+        res.render('update', { updateData: data })
+    })
+})
+
+app.post('/update/:id', (req, res) => {
+    const id = req.params.id
+    db.run(`UPDATE data SET name = ? , height = ? , weight = ? , birthdate = ? , married = ? WHERE id = ?`, [req.body.name, req.body.height, req.body.weight, req.body.birthdate, req.body.married, id], (err) => {
+        if (err) return res.send(err)
+        res.redirect('/')
+    })
+})
+
+app.get('/delete/:id', (req, res) => {
+    const id = req.params.id
+    db.run(`DELETE FROM data WHERE id = ? `, [id], (err) => {
+        if (err) return res.send(err)
+        res.redirect('/')
+    })
+})
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
