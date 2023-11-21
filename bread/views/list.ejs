@@ -16,45 +16,63 @@
             <h1>SQlite Bread(Browse,Read,Edit,Add,Delete) and Pagination</h1>
         </div>
         <div>
-            <form action="/add" method="post">
+            <form action="" method="get">
                 <div class="table">
                     <p>Name
-                        <input type="text" name="name" placeholder="insert your name">
+                        <input type="text" name="name" placeholder="insert your name" value="<%=query.name%>">
                     </p>
                     <p>
                         Height
-                        <input type="number" name="height" placeholder="insert your height">
+                        <input type="number" name="height" placeholder="insert your height" value="<%=query.height%>">
                     </p>
                     <p>
                         Weight
                         <input type="number" name="weight" step="0.0001" placeholder="insert your weight"
-                            style="margin-left:91px; width: 86%;">
+                            style="margin-left:91px; width: 86%;" value="<%=query.weight%>">
                     </p>
-                    <p>
+                    <p name="birthdate">
                         Birth Date
-                        <input type="date" name="birthdate" style="width: 36%; margin-right: 60px;">
+                        <input type="date" name="startdate" style="width: 36%; margin-right: 60px;"
+                            value="<%= query.startdate%>">
                         s.d.
-                        <input type="date" name="birthdate" style="width: 36%; margin-left: 60px;">
+                        <input type="date" name="enddate" style="width: 36%; margin-left: 60px;"
+                            value="<%= query.enddate%>">
                     </p>
                     <p name="married">
                         Is Married
-                        <select name="married" class="married">
-                            <option disable selected>-select married-</option>
-                            <option value="0">Not Yet</option>
-                            <option value="1">Yes</option>
-                        </select>
+                        <%if(query.married==='0'){%>
+                            <select name="married" class="married">
+                                <option disable selected value="">-select married-</option>
+                                <option value="0" selected>Not Yet</option>
+                                <option value="1">Yes</option>
+                            </select>
+                            <%}else if(query.married==='1' ){%>
+                                <select name="married" class="married">
+                                    <option disable selected value="">-select married-</option>
+                                    <option value="0">Not Yet</option>
+                                    <option value="1" selected>Yes</option>
+                                </select>
+                                <%}else{%>
+                                    <select name="married" class="married">
+                                        <option disable selected value="">-select married-</option>
+                                        <option value="0">Not Yet</option>
+                                        <option value="1">Yes</option>
+                                    </select>
+                                    <%}%>
                     </p>
                     <p>
                         Operation
-                        <input value="" id="or" type="radio"></input>
-                        <label for="or">OR</label>
-                        <input value="" id="and" type="radio" style="margin-left: 20px;"></input>
-                        <label for="and">AND</label>
+                        <%if(query.mode=='OR' ){%>
+                            <input value="" id="or" type="radio" checked>
+                            <label for="or">OR</label>
+                            <input value="" id="and" type="radio" style="margin-left: 20px;">
+                            <label for="and">AND</label>
+                            <%}%>
                     </p>
                 </div>
                 <div class="footer">
                     <button type="submit" class="search">Search</button>
-                    <a href="/" class="cancel">Back</a>
+                    <a href="/" class="cancel">Reset</a>
                 </div>
             </form>
         </div>
@@ -145,6 +163,13 @@
         </script>
         <div class="btn-add">
             <a href="/add" class="add">Add</a>
+            <div class="pagination">
+                <a href="#" style="background-color: white; color: blue;">&laquo;</a>
+                <a href="#">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#" style="background-color: white; color: blue;">&raquo;</a>
+            </div>
         </div>
     </div>
 </body>

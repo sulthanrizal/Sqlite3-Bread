@@ -19,8 +19,57 @@ app.use(bodyParser.json())
 app.use(express.static('public'))
 
 app.get('/', (req, res) => {
-    db.all('SELECT * FROM data', function (err, rows) {
-        res.render('list', { rows })
+    const { page = 1, name, height, weight, startdate, enddate, married, mode } = req.query
+    const qeuris = []
+    const params = []
+    const paramscount = []
+    if (name) {
+        qeuris.push(`name like '%' || ? || '%'`)
+        params.push(name)
+        paramscount.push(name)
+    }
+    if (height) {
+        qeuris.push(`height = ?`)
+        params.push(height)
+        paramscount.push(height)
+    }
+    if (weight) {
+        qeuris.push(`weight = ?`)
+        params.push(weight)
+        paramscount.push(weight)
+    }
+
+    if (startdate && enddate) {
+        qeuris.push(` birthdate BETWEEN ? and ?`)
+        params.push(startdate, enddate)
+        paramscount.push(startdate, enddate)
+    } else if (startdate) {
+        qeuris.push(` birthdate >= ?`)
+        params.push(startdate)
+        paramscount.push(startdate)
+    } else if (enddate) {
+        qeuris.push(` birthdate <= ? `)
+        params.push(enddate)
+        paramscount.push(enddate)
+    }
+
+    if (married) {
+        qeuris.push(` married = ?`)
+        params.push(married)
+        paramscount.push(married)
+    }
+
+
+    let sql = 'SELECT * FROM data'
+    let sqlcount = 'SELECT COUNT(*) AS TOTAL FROM data'
+
+    if (qeuris.length > 0) {
+        sql += ` WHERE ${qeuris.join(`${mode}`)}`
+        sqlcount += ` WHERE ${qeuris.join(`${mode}`)}`
+    }
+
+    db.all(sql, params, function (err, rows) {
+        res.render('list', { rows, query: req.query })
     })
 })
 
