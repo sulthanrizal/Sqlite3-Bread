@@ -63,11 +63,21 @@
                     <p>
                         Operation
                         <%if(query.mode=='OR' ){%>
-                            <input value="" id="or" type="radio" checked>
+                            <input value="OR" id="or" type="radio" name="mode" checked>
                             <label for="or">OR</label>
-                            <input value="" id="and" type="radio" style="margin-left: 20px;">
+                            <input value="AND" id="and" type="radio" style="margin-left: 20px;" name="mode">
                             <label for="and">AND</label>
-                            <%}%>
+                            <%}else if(query.mode=='AND' ){%>
+                                <input value="OR" id="or" type="radio" name="mode">
+                                <label for="or">OR</label>
+                                <input value="AND" id="and" type="radio" style="margin-left: 20px;" name="mode" checked>
+                                <label for="and">AND</label>
+                                <%}else{%>
+                                    <input value="OR" id="or" type="radio" name="mode" checked>
+                                    <label for="or">OR</label>
+                                    <input value="AND" id="and" type="radio" style="margin-left: 20px;" name="mode">
+                                    <label for="and">AND</label>
+                                    <%}%>
                     </p>
                 </div>
                 <div class="footer">
@@ -91,7 +101,7 @@
                 <%if(item.married===1){%>
                     <tr class="body">
                         <td>
-                            <%= item.id %>
+                            <%= index + 1 + offset %>
                         </td>
                         <td>
                             <%= item.name %>
@@ -121,7 +131,7 @@
                         <%if(item.married===0){%>
                             <tr class="body">
                                 <td>
-                                    <%= item.id %>
+                                    <%= index + 1 + offset %>
                                 </td>
                                 <td>
                                     <%= item.name %>
@@ -164,11 +174,13 @@
         <div class="btn-add">
             <a href="/add" class="add">Add</a>
             <div class="pagination">
-                <a href="#" style="background-color: white; color: blue;">&laquo;</a>
-                <a href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#" style="background-color: white; color: blue;">&raquo;</a>
+                <a href="#">&laquo;</a>
+                <%for(let i=1 ; i <=pages ; i++){%>
+                    <a class="<%= page == i ? 'active' : ''%>" href="/?page=<%=i%>">
+                        <%=i%>
+                    </a>
+                    <%}%>
+                        <a href="#">&raquo;</a>
             </div>
         </div>
     </div>

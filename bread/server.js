@@ -6,7 +6,8 @@ const port = 3000
 const path = require('path')
 const sqlite3 = require('sqlite3').verbose();
 const db = new sqlite3.Database(path.join(__dirname, 'db', 'data.db'))
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
+const { off } = require('process');
 
 app.set('view engine', 'ejs')
 
@@ -23,8 +24,10 @@ app.get('/', (req, res) => {
     const qeuris = []
     const params = []
     const paramscount = []
+    const limit = 5
+    const offset = (page - 1) * 5
     if (name) {
-        qeuris.push(`name like '%' || ? || '%'`)
+        qeuris.push(` name like '%' || ? || '%'`)
         params.push(name)
         paramscount.push(name)
     }
@@ -61,15 +64,24 @@ app.get('/', (req, res) => {
 
 
     let sql = 'SELECT * FROM data'
-    let sqlcount = 'SELECT COUNT(*) AS TOTAL FROM data'
+    let sqlcount = 'SELECT COUNT(*) as total FROM data'
 
     if (qeuris.length > 0) {
-        sql += ` WHERE ${qeuris.join(`${mode}`)}`
-        sqlcount += ` WHERE ${qeuris.join(`${mode}`)}`
+        sql += ` WHERE ${qeuris.join(` ${mode} `)}`
+        sqlcount += ` WHERE ${qeuris.join(` ${mode} `)}`
     }
 
-    db.all(sql, params, function (err, rows) {
-        res.render('list', { rows, query: req.query })
+    sql += ` LIMIT ? OFFSET ?`
+    params.push(limit, offset)
+
+    db.get(sqlcount, paramscount, (err, data) => {
+        const total = data.total
+        const pages = Math.ceil(total / limit)
+
+        db.all(sql, params, function (err, rows) {
+            res.render('list', { rows, query: req.query, pages, offset, page, mode, url: req.url })
+
+        })
     })
 })
 
