@@ -79,7 +79,7 @@ app.get('/', (req, res) => {
         const pages = Math.ceil(total / limit)
 
         db.all(sql, params, function (err, rows) {
-            res.render('list', { rows, query: req.query, pages, offset, page, mode, url: req.url })
+            res.render('list', { rows, query: req.query, pages, offset, page, mode })
 
         })
     })
