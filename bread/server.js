@@ -89,7 +89,7 @@ app.get('/add', (req, res) => {
     res.render('add')
 })
 
-app.post('/add', (req, res) => {
+app.post('/add', (req, res) => { // yang tanda tanya itu adalah query bending untuk mencegah hacking
     db.run('INSERT INTO data(name,height,weight,birthdate,married) VALUES (?,?,?,?,?) ', [req.body.name, req.body.height, req.body.weight, req.body.birthdate, req.body.married], (err) => {
         if (err) return res.send(err)
         res.redirect('/')
