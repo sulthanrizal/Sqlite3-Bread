@@ -17,24 +17,24 @@
             <form action="/add" method="post">
                 <div class="table">
                     <p>Name
-                        <input type="text" name="name" placeholder="insert your name">
+                        <input type="text" name="name" placeholder="insert your name" required>
                     </p>
                     <p>
                         Height
-                        <input type="number" name="height" placeholder="insert your height">
+                        <input type="number" name="height" placeholder="insert your height" required>
                     </p>
                     <p>
                         Weight
                         <input type="number" name="weight" step="0.0001" placeholder="insert your weight"
-                            style="margin-left:91px; width: 85%;">
+                            style="margin-left:91px; width: 85%;" required>
                     </p>
                     <p>
                         Birth Date
-                        <input type="date" name="birthdate">
+                        <input type="date" name="birthdate" required>
                     </p>
                     <p name="married">
                         Is Married
-                        <input type="radio" id="false" name="married" value="0">
+                        <input type="radio" id="false" name="married" value="0" checked required>
                         <label for="false">Not Yet</label>
                     <div class="true">
                         <input type="radio" id="true" name="married" value="1">

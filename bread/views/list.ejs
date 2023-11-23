@@ -17,6 +17,7 @@
         </div>
         <div>
             <form action="" method="get">
+                <input type="hidden" name="page" value="1">
                 <div class="table">
                     <p>Name
                         <input type="text" name="name" placeholder="insert your name" value="<%=query.name%>">
@@ -174,21 +175,44 @@
         <div class="btn-add">
             <a href="/add" class="add">Add</a>
             <div class="pagination">
-                <%if(page=='1' ){%>
-                    <a href="?page=<%=page%>">&laquo;</a>
-                    <%}else{%>
-                        <a href="?page=<%=page -1%>">&laquo;</a>
-                        <%}%>
-                            <%for(let i=1 ; i <=pages ; i++){%>
-                                <a class="<%= page == i ? 'active' : ''%>" href="/?page=<%=i%>">
-                                    <%=i%>
-                                </a>
-                                <%}%>
-                                    <%if(page !=pages ){%>
-                                        <a href="?page=<%= Number(page)+1%>">&raquo;</a>
-                                        <%}else{%>
-                                            <a href="?page=<%=pages%>">&raquo;</a>
-                                            <%}%>
+                <% if(page=='1' ) { %>
+                    <a href="<%= url.replace(`page=${page}`, `page=${page}`) %>">&laquo;</a>
+                    <% } else { %>
+                        <a href="<%= url.replace(`page=${page}`, `page=${page - 1}`) %>">&laquo;</a>
+                        <% } %>
+                            <% for(let i=1; i <=pages; i++) { %>
+                                <% if(url.includes("page=")) { %>
+                                        <% if (i == page) { %>
+                                            <a href=" <%=url.replace(`page=${page}`, `page=${i}`) %>" class="<%=
+                                        page==i ? 'active' : '' %>">
+                                        <%= i %></a>
+                                            <% } else { %>
+                                                <a href="<%= url.replace(`page=${page}`, `page=${i}`) %>"
+                                                    class="<%= page==i ? 'active' : '' %>">
+                                                    <%= i %>
+                                                </a>
+                                                <% } %>
+                                                    <% } else { %>
+                                                        <% if (i==page) { %>
+                                                            <a href="/?page=<%= i %>"
+                                                                class="<%= page==i ? 'active' : '' %>">
+                                                                <%= i %>
+                                                            </a>
+                                                            <% } else { %>
+                                                                <a href="/?page=<%= i %>"
+                                                                    class="<%= page==i ? 'active' : '' %>">
+                                                                    <%= i %>
+                                                                </a>
+                                                                <% } %>
+                                                                    <% } %>
+                                                                        <% } %>
+                                                                            <% if(page==pages) { %>
+                                                                                <a
+                                                                                    href="<%= url.replace(`page=${page}`, `page=${page}`) %>">&raquo;</a>
+                                                                                <% } else { %>
+                                                                                    <a
+                                                                                        href="<%= url.replace(`page=${page}`, `page=${(page * 1) + 1}`) %>">&raquo;</a>
+                                                                                    <% } %>
             </div>
         </div>
     </div>
