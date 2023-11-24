@@ -150,6 +150,8 @@ a.create {
     padding: 5px 15px;
     border-radius: 5px;
     margin-top: 5px;
+    display: inline-block;
+    padding-block: 4.7px;
 }
 
 .table {

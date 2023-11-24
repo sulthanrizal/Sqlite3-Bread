@@ -52,7 +52,9 @@ h1 {
     background-color: #FEC008;
     padding: 5px 15px;
     border-radius: 5px;
-    margin-top: 5px;
+    margin-top: 6px;
+    display: inline-block;
+    padding-block: 4.7px;
 }
 
 .table {
@@ -94,5 +96,5 @@ input[type=radio] {
 
 .true {
     display: block;
-    margin-left: 75px;
+    margin-left: 75.2px;
 }
