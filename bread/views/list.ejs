@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BREAD(Browse,Read,Edit,Add,Delete) and Pagination</title>
+    <script src="/js/util.js"></script>
 </head>
 
 <body>
@@ -123,9 +124,7 @@
                             <a href="/update/<%=item.id%>" class="update">
                                 Update
                             </a>
-                            <a href='/delete/<%=item.id%>' onclick="return notifikasi('<%=item.name%>')" class="delete">
-                                Delete
-                            </a>
+                            <button class="delete" onclick="on('<%= item.id %>', '<%= item.name %>')">Delete</button>
                         </td>
                     </tr>
                     <%}%>
@@ -153,16 +152,14 @@
                                     <a href="/update/<%=item.id%>" class="update">
                                         Update
                                     </a>
-                                    <a href='/delete/<%=item.id%>' onclick="return notifikasi('<%=item.name%>')"
-                                        class="delete">
-                                        Delete
-                                    </a>
+                                    <button class="delete"
+                                        onclick="on('<%= item.id %>', '<%= item.name %>')">Delete</button>
                                 </td>
                             </tr>
                             <%}%>
                                 <% }) %>
         </table>
-        <script>
+        <!-- <script>
             function notifikasi(item) {
                 const jawab = confirm(`apakah kamu yakin akan menghapus data '${item}'?`)
                 if (jawab) {
@@ -171,7 +168,7 @@
                     return false
                 }
             }
-        </script>
+        </script> -->
         <div class="btn-add">
             <a href="/add" class="add">Add</a>
             <div class="pagination">
@@ -235,6 +232,25 @@
                                                                                                                                     <%}%>
             </div>
         </div>
+    </div>
+    <div class="notif" id="notif">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Delete Confirmation</h4>
+                    <p class="close" onclick="off()">&times;</p>
+                </div>
+                <div class="modal-body">
+                    <p id="ask"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="notif-no" onclick="off()">No</button>
+                    <a id="nextdelete" class="notif-yes" href="#">Yes</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
     </div>
 </body>
 
