@@ -264,7 +264,7 @@ input[type=radio] {
 .modal-dialog {
     position: relative;
     width: 30%;
-    margin: 1% auto 20% auto;
+    margin: 1% auto 100% auto;
     pointer-events: none;
 }
 
