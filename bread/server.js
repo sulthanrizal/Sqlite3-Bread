@@ -71,9 +71,8 @@ app.get('/', (req, res) => {
         sqlcount += ` WHERE ${qeuris.join(` ${mode} `)}`
     }
 
-    sql += ` LIMIT ? OFFSET ?`
+    sql += ` ORDER BY id DESC LIMIT ? OFFSET ?`
     params.push(limit, offset)
-
     db.get(sqlcount, paramscount, (err, data) => {
         const total = data.total
         const pages = Math.ceil(total / limit)
